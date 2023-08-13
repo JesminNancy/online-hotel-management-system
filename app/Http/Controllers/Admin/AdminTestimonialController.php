@@ -66,5 +66,11 @@ class AdminTestimonialController extends Controller
 
         return redirect()->back()->with('success','Testimonial is updated successfully');
     }
+    public function delete($id){
 
+        $single_data = Testimonial::where('id',$id)->first();
+        unlink(public_path('uploads/'.$single_data->photo));
+        $single_data->delete();
+        return redirect()->back()->with('success','Slider deleted successfully');
+ }
 }
