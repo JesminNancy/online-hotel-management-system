@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading', 'Edit Slide')
+@section('heading', 'Edit Post')
 
 @section('right_top_button')
 <div class="ml-auto">
-    <a href="{{ route('admin_slider_view') }}" class="btn btn-primary"><i class="fa fa-eye"></i> view all</a>
+    <a href="{{ route('admin_post_view') }}" class="btn btn-primary"><i class="fa fa-eye"></i> view all</a>
 </div>
 @endsection
 
@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin_slider_update',$slider_data->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin_post_update',$post_data->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -22,7 +22,7 @@
                                 <div class="mb-4">
                                     <label class="form-label">Existing Photo *</label>
                                     <div>
-                                        <img src="{{ asset('uploads/'.$slider_data->photo) }}" alt="" class="w_200">
+                                        <img src="{{ asset('uploads/'.$post_data->photo) }}" alt="" class="w_200">
                                     </div>
                                 </div>
                                 <div class="mb-4">
@@ -31,26 +31,20 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">heading</label>
-                                    <input type="text" class="form-control" name="heading" value="{{ old('$slider_data->heading') }}">
+                                    <input type="text" class="form-control" name="heading" value="{{ $post_data->heading }}">
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">text</label>
-                                    <textarea class="form-control h_100" name="text" id="" cols="30" rows="10">{{ old('$slider_data->text') }}</textarea>
+                                    <label class="form-label">Short Content *</label>
+                                    <textarea name="short_content" class="form-control h_100" cols="30" rows="10">{{ $post_data->short_content }}</textarea>
                                 </div>
-
                                 <div class="mb-4">
-                                    <label class="form-label">button text</label>
-                                    <input type="text" class="form-control" name="button_text" value="{{ old('$slider_data->button_text') }}">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">button URL</label>
-                                    <input type="text" class="form-control" name="button_url" value="{{ old('$slider_data->button_url') }}">
+                                    <label class="form-label">Content *</label>
+                                    <textarea name="content" class="form-control snote" cols="30" rows="10">{{ $post_data->content }}</textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label"></label>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
                         </div>
