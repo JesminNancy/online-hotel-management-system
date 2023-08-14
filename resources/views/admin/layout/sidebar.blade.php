@@ -12,9 +12,9 @@
             <li class="active"><a class="nav-link" href="{{ route('admin_home') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
 
             <li class="nav-item dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Dropdown Items</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Pages</span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href=""><i class="fa fa-angle-right"></i> Item 1</a></li>
+                    <li class="active"><a class="nav-link" href="{{ route('admin_page_about') }}"><i class="fa fa-angle-right"></i> About</a></li>
                     <li class=""><a class="nav-link" href=""><i class="fa fa-angle-right"></i> Item 2</a></li>
                 </ul>
             </li>

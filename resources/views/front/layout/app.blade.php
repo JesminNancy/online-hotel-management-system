@@ -62,9 +62,11 @@
                                 <li class="nav-item">
                                     <a href="{{ route('home') }}" class="nav-link">Home</a>
                                 </li>
+                                @if($global_page->about_status==1)
                                 <li class="nav-item">
-                                    <a href="{{ route('about') }}" class="nav-link">About</a>
+                                    <a href="{{ route('about') }}" class="nav-link">{{ $global_page->about_heading }}</a>
                                 </li>
+                                @endif
                                 <li class="nav-item">
                                     <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
                                     <ul class="dropdown-menu">

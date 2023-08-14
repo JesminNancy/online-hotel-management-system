@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminFqaController;
+use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\HomeController;
@@ -105,3 +106,8 @@ Route::post('/admin/fqa/store',[AdminFqaController::class,'store'])->name('admin
 Route::get('/admin/fqa_edit/{id}',[AdminFqaController::class,'edit'])->name('admin_fqa_edit')->middleware('admin:admin');
 Route::post('/admin/fqa_update/{id}',[AdminFqaController::class,'update'])->name('admin_fqa_update')->middleware('admin:admin');
 Route::get('/admin/fqa_delete/{id}',[AdminFqaController::class,'delete'])->name('admin_fqa_delete')->middleware('admin:admin');
+
+/*......... Pages............ */
+Route::get('/admin/page/about',[AdminPageController::class,'about'])->name('admin_page_about')->middleware('admin:admin');
+
+Route::post('/admin/page/about/update',[AdminPageController::class,'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
