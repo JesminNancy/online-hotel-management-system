@@ -67,7 +67,6 @@ public function update(Request $request,$id){
 }
 
 public function delete($id){
-
        $single_data = Slider::where('id',$id)->first();
        $single_data->delete();
        return redirect()->back()->with('success','Slider deleted successfully');
