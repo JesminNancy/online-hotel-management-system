@@ -21,6 +21,7 @@
                         <li><a href="terms.html">Terms and Conditions</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="{{ route('fqa') }}">FQA</a></li>
                     </ul>
                 </div>
             </div>

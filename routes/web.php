@@ -9,11 +9,13 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
+use App\Http\Controllers\Admin\AdminFqaController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
+use App\Http\Controllers\Front\FqaController;
 use Illuminate\Support\Facades\Route;
 
 /*.........Frontend............ */
@@ -24,7 +26,7 @@ Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/post/{id}',[BlogController::class,'singlePost'])->name('post');
 Route::get('/photo',[PhotoController::class,'index'])->name('photo');
 Route::get('/video',[VideoController::class,'index'])->name('video');
-
+Route::get('/fqa',[FqaController::class,'index'])->name('fqa');
 /*......... Admin............ */
 
 Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home')->middleware('admin:admin');
@@ -94,3 +96,12 @@ Route::post('/admin/video/store',[AdminVideoController::class,'store'])->name('a
 Route::get('/admin/video_edit/{id}',[AdminVideoController::class,'edit'])->name('admin_video_edit')->middleware('admin:admin');
 Route::post('/admin/video_update/{id}',[AdminVideoController::class,'update'])->name('admin_video_update')->middleware('admin:admin');
 Route::get('/admin/video_delete/{id}',[AdminVideoController::class,'delete'])->name('admin_video_delete')->middleware('admin:admin');
+
+/*......... FQA............ */
+
+Route::get('/admin/fqa/view',[AdminFqaController::class,'index'])->name('admin_fqa_view')->middleware('admin:admin');
+Route::get('/admin/fqa/add',[AdminFqaController::class,'add'])->name('admin_fqa_add')->middleware('admin:admin');
+Route::post('/admin/fqa/store',[AdminFqaController::class,'store'])->name('admin_fqa_store')->middleware('admin:admin');
+Route::get('/admin/fqa_edit/{id}',[AdminFqaController::class,'edit'])->name('admin_fqa_edit')->middleware('admin:admin');
+Route::post('/admin/fqa_update/{id}',[AdminFqaController::class,'update'])->name('admin_fqa_update')->middleware('admin:admin');
+Route::get('/admin/fqa_delete/{id}',[AdminFqaController::class,'delete'])->name('admin_fqa_delete')->middleware('admin:admin');
