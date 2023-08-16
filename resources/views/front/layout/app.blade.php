@@ -90,18 +90,22 @@
                                 <li class="nav-item">
                                     <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
                                     <ul class="dropdown-menu">
+                                        @if($global_page->photo_gallery_status==1)
+                                            <li class="nav-item">
+                                                <a href="{{ route('photo') }}" class="nav-link">{{ $global_page->photo_gallery_heading }}</a>
+                                            </li>
+                                        @endif
+                                        @if($global_page->video_gallery_status==1)
                                         <li class="nav-item">
-                                            <a href="{{ route('photo') }}" class="nav-link">Photo Gallery</a>
+                                            <a href="{{ route('video') }}" class="nav-link">{{ $global_page->video_gallery_heading }}</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('video') }}" class="nav-link">Video Gallery</a>
-                                        </li>
+                                        @endif
                                     </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                                 </li>
-                                @if($global_page->about_status==1)
+                                @if($global_page->contact_status==1)
                                 <li class="nav-item">
                                     <a href="{{ route('contact') }}" class="nav-link">{{ $global_page->contact_heading }}</a>
                                 </li>

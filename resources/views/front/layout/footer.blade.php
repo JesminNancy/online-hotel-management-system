@@ -7,7 +7,14 @@
                     <h2 class="heading">Site Links</h2>
                     <ul class="useful-links">
                         <li><a href="rooms.html">Rooms & Suites</a></li>
-                        <li><a href="{{ route('photo') }}">Photo Gallery</a></li>
+                        @if($global_page->photo_gallery_status==1)
+                        <li><a href="{{ route('photo') }}">{{ $global_page->photo_gallery_heading }}</a></li>
+                        @endif
+                        @if($global_page->video_gallery_status==1)
+                        <li>
+                            <a href="{{ route('video') }}">{{ $global_page->video_gallery_heading }}</a>
+                        </li>
+                        @endif
                         <li><a href="{{ route('blog') }}">Blog</a></li>
                         <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
