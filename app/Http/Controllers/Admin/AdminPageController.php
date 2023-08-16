@@ -36,4 +36,19 @@ class AdminPageController extends Controller
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
 
+    public function privacy(){
+        $page_data = Page::where('id',1)->first();
+        return view('admin.page_privacy', compact('page_data'));
+    }
+    public function privacy_update(Request $request)
+    {
+        $obj = Page::where('id',1)->first();
+        $obj->privacy_heading = $request->privacy_heading;
+        $obj->privacy_content = $request->privacy_content;
+        $obj->privacy_status = $request->privacy_status;
+        $obj->update();
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+
 }

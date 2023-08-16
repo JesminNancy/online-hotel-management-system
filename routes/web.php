@@ -17,6 +17,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
 use App\Http\Controllers\Front\FqaController;
+use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,8 @@ Route::get('/photo',[PhotoController::class,'index'])->name('photo');
 Route::get('/video',[VideoController::class,'index'])->name('video');
 Route::get('/fqa',[FqaController::class,'index'])->name('fqa');
 Route::get('/terms_and_condition',[TermsController::class,'index'])->name('terms');
+Route::get('/privacy',[PrivacyController::class,'index'])->name('privacy');
+
 /*......... Admin............ */
 
 Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home')->middleware('admin:admin');
@@ -109,10 +112,16 @@ Route::get('/admin/fqa_edit/{id}',[AdminFqaController::class,'edit'])->name('adm
 Route::post('/admin/fqa_update/{id}',[AdminFqaController::class,'update'])->name('admin_fqa_update')->middleware('admin:admin');
 Route::get('/admin/fqa_delete/{id}',[AdminFqaController::class,'delete'])->name('admin_fqa_delete')->middleware('admin:admin');
 
-/*......... Pages............ */
+/*.........About Pages............ */
 Route::get('/admin/page/about',[AdminPageController::class,'about'])->name('admin_page_about')->middleware('admin:admin');
-
 Route::post('/admin/page/about/update',[AdminPageController::class,'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
-Route::get('/admin/page/terms',[AdminPageController::class,'terms'])->name('admin_page_terms')->middleware('admin:admin');
 
+/*.........Terms and Condition Pages............ */
+
+Route::get('/admin/page/terms',[AdminPageController::class,'terms'])->name('admin_page_terms')->middleware('admin:admin');
 Route::post('/admin/page/terms/update',[AdminPageController::class,'terms_update'])->name('admin_page_terms_update')->middleware('admin:admin');
+
+/*......... Privacy Pages............ */
+
+Route::get('/admin/page/privacy',[AdminPageController::class,'privacy'])->name('admin_page_privacy')->middleware('admin:admin');
+Route::post('/admin/page/privacy/update',[AdminPageController::class,'privacy_update'])->name('admin_page_privacy_update')->middleware('admin:admin');

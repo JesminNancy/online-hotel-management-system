@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>{{ $privacy->privacy_heading }}</h2>
+                <h2>{{ $privacy_data->privacy_heading }}</h2>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
+                    {!! $privacy_data->privacy_content !!}
                 </p>
             </div>
         </div>
