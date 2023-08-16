@@ -10,5 +10,6 @@
         <link rel="stylesheet" href="{{ asset('dist-front/css/spacing.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/daterangepicker.css') }}">
+        <link rel="stylesheet" href="{{ asset('dist-front/css/iziToast.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/meanmenu.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/style.css') }}">

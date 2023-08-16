@@ -101,9 +101,11 @@
                                 <li class="nav-item">
                                     <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                                 </li>
+                                @if($global_page->about_status==1)
                                 <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">Contact</a>
+                                    <a href="{{ route('contact') }}" class="nav-link">{{ $global_page->contact_heading }}</a>
                                 </li>
+                                @endif
                             </ul>
                         </div>
                     </nav>

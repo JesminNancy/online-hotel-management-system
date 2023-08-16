@@ -107,7 +107,7 @@ select {
 .top ul.right li:first-child:before {
 	display: none;
 }
-@media (max-width: 991px) { 
+@media (max-width: 991px) {
 	.top {
 		padding-top: 3px;
 		padding-bottom: 3px;
@@ -423,7 +423,7 @@ select {
 	.search-section .form-control,
 	.search-section .form-select {
 		margin-bottom: 10px;
-	}	
+	}
 }
 .daterangepicker {
 	z-index: 99999;
@@ -437,7 +437,7 @@ select {
 .home-feature {
 	padding-top: 50px;
 	padding-bottom: 20px;
-	background: #f0f0f0;	
+	background: #f0f0f0;
 }
 .home-feature .inner {
 	margin-bottom: 40px;
@@ -798,7 +798,7 @@ select {
 }
 .video-gallery .video-thumb img {
 	width: 100%;
-	height: auto;	
+	height: auto;
 }
 .video-gallery .video-thumb .icon {
 	position: absolute;
@@ -1185,7 +1185,7 @@ select {
 .cart .small {
 	font-size: 13px;
 }
-.cart .table-cart tr th, 
+.cart .table-cart tr th,
 .cart .table-cart tr td {
 	border: 1px solid #c9c9c9!important;
 }
@@ -1269,4 +1269,16 @@ select {
 
 .daterangepicker.opensright:after {
 	left: 111px!important;
+}
+
+#loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.75) url(loading.gif) no-repeat center center;
+    z-index: 10000;
 }
