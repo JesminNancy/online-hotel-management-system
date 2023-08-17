@@ -30,8 +30,12 @@
                     </div>
                     <div class="col-md-6 right-side">
                         <ul class="right">
-                            <li class="menu"><a href="cart.html">Cart</a></li>
-                            <li class="menu"><a href="checkout.html">Checkout</a></li>
+                            @if($global_page->cart_status==1)
+                            <li class="menu"><a href="cart.html">{{ $global_page->cart_heading }}</a></li>
+                            @endif
+                            @if($global_page->checkout_status==1)
+                            <li class="menu"><a href="checkout.html">{{ $global_page->checkout_heading }}</a></li>
+                            @endif
                             <li class="menu"><a href="signup.html">Sign Up</a></li>
                             <li class="menu"><a href="login.html">Login</a></li>
                         </ul>

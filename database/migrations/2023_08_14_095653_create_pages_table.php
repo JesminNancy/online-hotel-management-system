@@ -29,6 +29,15 @@ return new class extends Migration
             $table->integer('photo_gallery_status');
             $table->text('fqa_heading');
             $table->integer('fqa_status');
+            $table->text('cart_heading');
+            $table->integer('cart_status');
+            $table->text('checkout_heading');
+            $table->integer('checkout_status');
+            $table->text('payment_heading');
+            $table->text('signup_heading');
+            $table->integer('signup_status');
+            $table->text('signin_heading');
+            $table->integer('signin_status');
             $table->timestamps();
         });
     }

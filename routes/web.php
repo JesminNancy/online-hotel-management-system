@@ -114,6 +114,8 @@ Route::get('/admin/fqa_edit/{id}',[AdminFqaController::class,'edit'])->name('adm
 Route::post('/admin/fqa_update/{id}',[AdminFqaController::class,'update'])->name('admin_fqa_update')->middleware('admin:admin');
 Route::get('/admin/fqa_delete/{id}',[AdminFqaController::class,'delete'])->name('admin_fqa_delete')->middleware('admin:admin');
 
+/*......... All Pages Heading Dynamic............ */
+
 /*.........About Pages............ */
 Route::get('/admin/page/about',[AdminPageController::class,'about'])->name('admin_page_about')->middleware('admin:admin');
 Route::post('/admin/page/about/update',[AdminPageController::class,'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
@@ -132,15 +134,36 @@ Route::post('/admin/page/privacy/update',[AdminPageController::class,'privacy_up
 
 Route::get('/admin/page/contact',[AdminPageController::class,'contact'])->name('admin_page_contact')->middleware('admin:admin');
 Route::post('/admin/page/contact/update',[AdminPageController::class,'contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
+/*......... Photo Gallery Pages............ */
 
 Route::get('/admin/page/photo_gallery',[AdminPageController::class,'photo_gallery'])->name('admin_page_photo_gallery')->middleware('admin:admin');
 Route::post('/admin/page/photo_gallery/update',[AdminPageController::class,'photo_gallery_update'])->name('admin_page_photo_gallery_update')->middleware('admin:admin');
+/*......... Video Gallery Pages............ */
 
 Route::get('/admin/page/video_gallery',[AdminPageController::class,'video_gallery'])->name('admin_page_video_gallery')->middleware('admin:admin');
 Route::post('/admin/page/video_gallery/update',[AdminPageController::class,'video_gallery_update'])->name('admin_page_video_gallery_update')->middleware('admin:admin');
+/*......... FQA Pages............ */
 
 Route::get('/admin/page/fqa',[AdminPageController::class,'fqa'])->name('admin_page_fqa')->middleware('admin:admin');
 Route::post('/admin/page/fqa/update',[AdminPageController::class,'fqa_update'])->name('admin_page_fqa_update')->middleware('admin:admin');
+/*......... Blog Pages............ */
 
 Route::get('/admin/page/blog',[AdminPageController::class,'blog'])->name('admin_page_blog')->middleware('admin:admin');
 Route::post('/admin/page/blog/update',[AdminPageController::class,'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+/*......... Cart Pages............ */
+
+Route::get('/admin/page/cart',[AdminPageController::class,'cart'])->name('admin_page_cart')->middleware('admin:admin');
+Route::post('/admin/page/cart/update',[AdminPageController::class,'cart_update'])->name('admin_page_cart_update')->middleware('admin:admin');
+
+/*......... Chcekout Pages............ */
+
+Route::get('/admin/page/checkout',[AdminPageController::class,'checkout'])->name('admin_page_checkout')->middleware('admin:admin');
+Route::post('/admin/page/checkout/update',[AdminPageController::class,'checkout_update'])->name('admin_page_checkout_update')->middleware('admin:admin');
+/*......... Payment Pages............ */
+
+Route::get('/admin/page/payment',[AdminPageController::class,'payment'])->name('admin_page_payment')->middleware('admin:admin');
+Route::post('/admin/page/payment/update',[AdminPageController::class,'payment_update'])->name('admin_page_payment_update')->middleware('admin:admin');
+/*......... SignUp Pages............ */
+Route::get('/admin/page/blog',[AdminPageController::class,'blog'])->name('admin_page_blog')->middleware('admin:admin');
+Route::post('/admin/page/blog/update',[AdminPageController::class,'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+/*......... Signin Pages............ */

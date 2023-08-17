@@ -22,6 +22,7 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
     public function terms(){
         $page_data = Page::where('id',1)->first();
         return view('admin.page_terms', compact('page_data'));
@@ -49,6 +50,7 @@ class AdminPageController extends Controller
         $obj->update();
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
     public function contact(){
         $page_data = Page::where('id',1)->first();
         return view('admin.page_contact', compact('page_data'));
@@ -75,6 +77,7 @@ class AdminPageController extends Controller
         $obj->update();
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
     public function video_gallery(){
         $page_data = Page::where('id',1)->first();
         return view('admin.page_video_gallery', compact('page_data'));
@@ -87,6 +90,7 @@ class AdminPageController extends Controller
         $obj->update();
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
     public function fqa(){
         $page_data = Page::where('id',1)->first();
         return view('admin.page_fqa', compact('page_data'));
@@ -99,6 +103,7 @@ class AdminPageController extends Controller
         $obj->update();
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
     public function blog(){
         $page_data = Page::where('id',1)->first();
         return view('admin.page_blog', compact('page_data'));
@@ -108,6 +113,32 @@ class AdminPageController extends Controller
         $obj = Page::where('id',1)->first();
         $obj->blog_heading = $request->blog_heading;
         $obj->blog_status = $request->blog_status;
+        $obj->update();
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+    public function cart(){
+        $page_data = Page::where('id',1)->first();
+        return view('admin.page_cart', compact('page_data'));
+    }
+    public function cart_update(Request $request)
+    {
+        $obj = Page::where('id',1)->first();
+        $obj->cart_heading = $request->cart_heading;
+        $obj->cart_status = $request->cart_status;
+        $obj->update();
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+    public function checkout(){
+        $page_data = Page::where('id',1)->first();
+        return view('admin.page_checkout', compact('page_data'));
+    }
+    public function checkout_update(Request $request)
+    {
+        $obj = Page::where('id',1)->first();
+        $obj->checkout_heading = $request->checkout_heading;
+        $obj->checkout_status = $request->checkout_status;
         $obj->update();
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
