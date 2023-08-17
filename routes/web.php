@@ -164,6 +164,8 @@ Route::post('/admin/page/checkout/update',[AdminPageController::class,'checkout_
 Route::get('/admin/page/payment',[AdminPageController::class,'payment'])->name('admin_page_payment')->middleware('admin:admin');
 Route::post('/admin/page/payment/update',[AdminPageController::class,'payment_update'])->name('admin_page_payment_update')->middleware('admin:admin');
 /*......... SignUp Pages............ */
-Route::get('/admin/page/blog',[AdminPageController::class,'blog'])->name('admin_page_blog')->middleware('admin:admin');
-Route::post('/admin/page/blog/update',[AdminPageController::class,'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+Route::get('/admin/page/signup',[AdminPageController::class,'signup'])->name('admin_page_signup')->middleware('admin:admin');
+Route::post('/admin/page/signup/update',[AdminPageController::class,'signup_update'])->name('admin_page_signup_update')->middleware('admin:admin');
 /*......... Signin Pages............ */
+Route::get('/admin/page/signin',[AdminPageController::class,'signin'])->name('admin_page_signin')->middleware('admin:admin');
+Route::post('/admin/page/signin/update',[AdminPageController::class,'signin_update'])->name('admin_page_signin_update')->middleware('admin:admin');
