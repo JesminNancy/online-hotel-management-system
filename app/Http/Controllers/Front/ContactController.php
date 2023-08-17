@@ -43,5 +43,5 @@ class ContactController extends Controller
 
             return response()->json(['code'=>1,'success_message'=>'Email is sent successfully']);
         }
-}
+    }
 }

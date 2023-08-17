@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
 use App\Http\Controllers\Front\FqaController;
 use App\Http\Controllers\Front\PrivacyController;
+use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,9 @@ Route::get('/terms_and_condition',[TermsController::class,'index'])->name('terms
 Route::get('/privacy',[PrivacyController::class,'index'])->name('privacy');
 Route::get('/contact',[ContactController::class,'index'])->name('contact');
 Route::post('/contact/send_email',[ContactController::class,'send_email'])->name('contact_send_email');
+Route::post('/subscribe/send_email',[SubscriberController::class,'send_email'])->name('subscribe_send_email');
+Route::get('/subscribe/verify/{token}/{email}',[SubscriberController::class,'verify'])->name('subscribe_verify');
+
 /*......... Admin............ */
 
 Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home')->middleware('admin:admin');
