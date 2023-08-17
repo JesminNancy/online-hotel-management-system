@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>FAQ</h2>
+                <h2>{{ $global_page->fqa_heading }}</h2>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
                         <div id="collapse{{ $i }}" class="accordion-collapse collapse @if ($i==1) show @endif" aria-labelledby="heading{{ $i }}" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>
-                                {{ $fqa->answer }}
+                                {!! $fqa->answer !!}
                                 </p>
                             </div>
                         </div>

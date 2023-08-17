@@ -87,6 +87,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                @if($global_page->photo_gallery_status==1 || $global_page->video_gallery_status==1)
                                 <li class="nav-item">
                                     <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
                                     <ul class="dropdown-menu">
@@ -102,6 +103,7 @@
                                         @endif
                                     </ul>
                                 </li>
+                                @endif
                                 <li class="nav-item">
                                     <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                                 </li>

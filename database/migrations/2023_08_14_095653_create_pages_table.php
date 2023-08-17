@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('contact_status');
             $table->text('photo_gallery_heading');
             $table->integer('photo_gallery_status');
+            $table->text('fqa_heading');
+            $table->integer('fqa_status');
             $table->timestamps();
         });
     }

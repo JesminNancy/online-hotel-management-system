@@ -28,7 +28,9 @@
                         <li><a href="{{ route('terms') }}">Terms and Conditions</a></li>
                         <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
                         <li><a href="disclaimer.html">Disclaimer</a></li>
-                        <li><a href="{{ route('fqa') }}">FQA</a></li>
+                        @if($global_page->fqa_status==1)
+                            <li><a href="{{ route('fqa') }}">FQA</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

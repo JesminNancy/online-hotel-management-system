@@ -138,3 +138,6 @@ Route::post('/admin/page/photo_gallery/update',[AdminPageController::class,'phot
 
 Route::get('/admin/page/video_gallery',[AdminPageController::class,'video_gallery'])->name('admin_page_video_gallery')->middleware('admin:admin');
 Route::post('/admin/page/video_gallery/update',[AdminPageController::class,'video_gallery_update'])->name('admin_page_video_gallery_update')->middleware('admin:admin');
+
+Route::get('/admin/page/fqa',[AdminPageController::class,'fqa'])->name('admin_page_fqa')->middleware('admin:admin');
+Route::post('/admin/page/fqa/update',[AdminPageController::class,'fqa_update'])->name('admin_page_fqa_update')->middleware('admin:admin');

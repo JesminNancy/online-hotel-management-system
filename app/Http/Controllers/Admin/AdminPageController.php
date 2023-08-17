@@ -87,4 +87,16 @@ class AdminPageController extends Controller
         $obj->update();
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+    public function fqa(){
+        $page_data = Page::where('id',1)->first();
+        return view('admin.page_fqa', compact('page_data'));
+    }
+    public function fqa_update(Request $request)
+    {
+        $obj = Page::where('id',1)->first();
+        $obj->fqa_heading = $request->fqa_heading;
+        $obj->fqa_status = $request->fqa_status;
+        $obj->update();
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }
