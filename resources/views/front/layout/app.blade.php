@@ -104,9 +104,11 @@
                                     </ul>
                                 </li>
                                 @endif
+                                @if($global_page->blog_status==1)
                                 <li class="nav-item">
-                                    <a href="{{ route('blog') }}" class="nav-link">Blog</a>
+                                    <a href="{{ route('blog') }}" class="nav-link">{{ $global_page->blog_heading }}</a>
                                 </li>
+                                @endif
                                 @if($global_page->contact_status==1)
                                 <li class="nav-item">
                                     <a href="{{ route('contact') }}" class="nav-link">{{ $global_page->contact_heading }}</a>

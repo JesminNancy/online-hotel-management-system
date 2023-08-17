@@ -15,7 +15,9 @@
                             <a href="{{ route('video') }}">{{ $global_page->video_gallery_heading }}</a>
                         </li>
                         @endif
-                        <li><a href="{{ route('blog') }}">Blog</a></li>
+                        @if($global_page->blog_status==1)
+                            <li><a href="{{ route('blog') }}">{{ $global_page->blog_heading }}</a></li>
+                        @endif
                         <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </div>
