@@ -36,6 +36,14 @@
             <li class="{{ Request::is('admin/photo/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_photo_view') }}"><i class="fa fa-hand-o-right"></i> <span>Photo Gallery</span></a></li>
             <li class="{{ Request::is('admin/video/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_video_view') }}"><i class="fa fa-hand-o-right"></i> <span>Video Gallery</span></a></li>
             <li class="{{ Request::is('admin/fqa/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_fqa_view') }}"><i class="fa fa-hand-o-right"></i> <span>FQA</span></a></li>
+
+            <li class="nav-item dropdown {{Request::is('/admin/subscriber/show')||Request::is('/admin/subscriber/send_email') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Subscribers</span></a>
+                <ul class="dropdown-menu">
+                   <li class="{{ Request::is('/admin/subscriber/show') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_subscriber_show') }}"><i class="fa fa-angle-right"></i> All Subscribers</a></li>
+                   <li class="{{ Request::is('/admin/subscriber/send_email') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_subscriber_send_email') }}"><i class="fa fa-angle-right"></i>Send Email</a></li>
+                </ul>
+            </li>
         </ul>
     </aside>
 </div>
