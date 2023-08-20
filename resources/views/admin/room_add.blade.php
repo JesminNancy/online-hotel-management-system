@@ -43,18 +43,20 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Amenity</label>
+                                    @php
+                                        $i=0;
+                                    @endphp
+                                    @foreach ($all_amenities as $amenity)
+                                    @php
+                                        $i++;
+                                    @endphp
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="amenities">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                          Amenity 1
+                                        <input class="form-check-input" type="checkbox" value="{{ $amenity->id }}" id="defaultCheck{{ $i }}" name="arr_amenities[]">
+                                        <label class="form-check-label" for="defaultCheck{{ $i }}">
+                                          {{ $amenity->name }}
                                         </label>
                                       </div>
-                                      <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" name="amenities">
-                                        <label class="form-check-label" for="defaultCheck2">
-                                          Amenity 2
-                                        </label>
-                                      </div>
+                                    @endforeach
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Beds</label>
