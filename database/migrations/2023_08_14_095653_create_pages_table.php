@@ -29,6 +29,9 @@ return new class extends Migration
             $table->integer('photo_gallery_status');
             $table->text('fqa_heading');
             $table->integer('fqa_status');
+            $table->text('blog_heading');
+            $table->integer('blog_status');
+            $table->text('room_heading');
             $table->text('cart_heading');
             $table->integer('cart_status');
             $table->text('checkout_heading');

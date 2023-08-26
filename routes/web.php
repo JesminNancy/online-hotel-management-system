@@ -22,6 +22,7 @@ use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
 use App\Http\Controllers\Front\FqaController;
 use App\Http\Controllers\Front\PrivacyController;
+use App\Http\Controllers\Front\RoomController;
 use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,11 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact');
 Route::post('/contact/send_email',[ContactController::class,'send_email'])->name('contact_send_email');
 Route::post('/subscribe/send_email',[SubscriberController::class,'send_email'])->name('subscribe_send_email');
 Route::get('/subscribe/verify/{token}/{email}',[SubscriberController::class,'verify'])->name('subscribe_verify');
+Route::get('/room',[RoomController::class,'index'])->name('room');
+Route::get('/room/{id}',[RoomController::class,'singleRoom'])->name('room_details');
+
+
+
 
 /*......... Admin............ */
 
@@ -157,6 +163,10 @@ Route::post('/admin/page/fqa/update',[AdminPageController::class,'fqa_update'])-
 
 Route::get('/admin/page/blog',[AdminPageController::class,'blog'])->name('admin_page_blog')->middleware('admin:admin');
 Route::post('/admin/page/blog/update',[AdminPageController::class,'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+
+Route::get('/admin/page/room',[AdminPageController::class,'room'])->name('admin_page_room')->middleware('admin:admin');
+Route::post('/admin/page/room/update',[AdminPageController::class,'room_update'])->name('admin_page_room_update')->middleware('admin:admin');
+
 /*......... Cart Pages............ */
 
 Route::get('/admin/page/cart',[AdminPageController::class,'cart'])->name('admin_page_cart')->middleware('admin:admin');
