@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\AdminFqaController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminRoomController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
+use App\Http\Controllers\Customer\CustomerAuthController;
+use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
@@ -46,11 +48,8 @@ Route::get('/room',[RoomController::class,'index'])->name('room');
 Route::get('/room/{id}',[RoomController::class,'singleRoom'])->name('room_details');
 
 
+/*......... Admin Without Middleware............ */
 
-
-/*......... Admin............ */
-
-Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home')->middleware('admin:admin');
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin_login');
 Route::get('/admin/logout',[AdminLoginController::class,'logout'])->name('admin_logout');
 Route::post('/admin/login_submit',[AdminLoginController::class,'login_submit'])->name('admin_login_submit');
@@ -59,156 +58,180 @@ Route::get('/admin/reset_password/{token}/{email}',[AdminLoginController::class,
 Route::post('/admin/reset_password_submit',[AdminLoginController::class,'resetPasswordSubmit'])->name('reset_password_submit');
 Route::post('/admin/forget_password_submit',[AdminLoginController::class,'forgetPassword_submit'])->name('admin_forget_password_submit');
 
-/*......... Profile............ */
+/*......... Customer Without Middleware............ */
+Route::get('/customer/logout',[CustomerAuthController::class,'logout'])->name('customer_logout');
+Route::get('/customer/login',[CustomerAuthController::class,'index'])->name('customer_login');
+Route::post('/customer/login_submit',[CustomerAuthController::class,'login_submit'])->name('customer_login_submit');
+Route::get('/signup',[CustomerAuthController::class,'signup'])->name('customer_signup');
+Route::get('/signin',[CustomerAuthController::class,'signin'])->name('customer_signin');
+Route::post('/signup-submit',[CustomerAuthController::class,'signup_submit'])->name('customer_signup_submit');
+Route::get('/customer/verify/{email}/{token}',[CustomerAuthController::class,'verify'])->name('customer_signup_verify');
+ /*......... Customer With Middleware............ */
+Route::group(['middleware'=>['customer:customer']],function(){
+Route::get('/customer/home',[CustomerHomeController::class,'index'])->name('customer_home');
+Route::get('/customer/edit_profile',[AdminProfileController::class,'index'])->name('customer_profile');
+Route::post('/customer/edit_profile_submit',[AdminProfileController::class,'edit_profile_submit'])->name('customer_profile_submit');
+ });
+ /*......... Admin With Middleware............ */
 
-Route::get('/admin/edit_profile',[AdminProfileController::class,'index'])->name('admin_profile')->middleware('admin:admin');
-Route::post('/admin/edit_profile_submit',[AdminProfileController::class,'edit_profile_submit'])->name('admin_profile_submit')->middleware('admin:admin');
+Route::group(['middleware'=>['admin:admin']],function(){
+    /*......... Profile............ */
+
+    Route::get('/admin/edit_profile',[AdminProfileController::class,'index'])->name('admin_profile');
+    Route::post('/admin/edit_profile_submit',[AdminProfileController::class,'edit_profile_submit'])->name('admin_profile_submit');
+ /*......... Admin With Middleware............ */
+    Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home');
 
 /*......... Add Slider............ */
 
-Route::get('/admin/slider/view',[AdminSliderController::class,'index'])->name('admin_slider_view')->middleware('admin:admin');
-Route::get('/admin/slider/add',[AdminSliderController::class,'add'])->name('admin_slider_add')->middleware('admin:admin');
-Route::post('/admin/slider/store',[AdminSliderController::class,'store'])->name('admin_slider_store')->middleware('admin:admin');
-Route::get('/admin/slide_edit/{id}',[AdminSliderController::class,'edit'])->name('admin_slider_edit')->middleware('admin:admin');
-Route::post('/admin/slide_update/{id}',[AdminSliderController::class,'update'])->name('admin_slider_update')->middleware('admin:admin');
-Route::get('/admin/slide_delete/{id}',[AdminSliderController::class,'delete'])->name('admin_slider_delete')->middleware('admin:admin');
+    Route::get('/admin/slider/view',[AdminSliderController::class,'index'])->name('admin_slider_view');
+    Route::get('/admin/slider/add',[AdminSliderController::class,'add'])->name('admin_slider_add');
+    Route::post('/admin/slider/store',[AdminSliderController::class,'store'])->name('admin_slider_store');
+    Route::get('/admin/slide_edit/{id}',[AdminSliderController::class,'edit'])->name('admin_slider_edit');
+    Route::post('/admin/slide_update/{id}',[AdminSliderController::class,'update'])->name('admin_slider_update');
+    Route::get('/admin/slide_delete/{id}',[AdminSliderController::class,'delete'])->name('admin_slider_delete');
 
 /*......... Add Features............ */
 
-Route::get('/admin/feature/view',[AdminFeatureController::class,'index'])->name('admin_feature_view')->middleware('admin:admin');
-Route::get('/admin/feature/add',[AdminFeatureController::class,'add'])->name('admin_feature_add')->middleware('admin:admin');
-Route::post('/admin/feature/store',[AdminFeatureController::class,'store'])->name('admin_feature_store')->middleware('admin:admin');
-Route::get('/admin/feature_edit/{id}',[AdminFeatureController::class,'edit'])->name('admin_feature_edit')->middleware('admin:admin');
-Route::post('/admin/feature_update/{id}',[AdminFeatureController::class,'update'])->name('admin_feature_update')->middleware('admin:admin');
-Route::get('/admin/feature_delete/{id}',[AdminFeatureController::class,'delete'])->name('admin_feature_delete')->middleware('admin:admin');
+    Route::get('/admin/feature/view',[AdminFeatureController::class,'index'])->name('admin_feature_view');
+    Route::get('/admin/feature/add',[AdminFeatureController::class,'add'])->name('admin_feature_add');
+    Route::post('/admin/feature/store',[AdminFeatureController::class,'store'])->name('admin_feature_store');
+    Route::get('/admin/feature_edit/{id}',[AdminFeatureController::class,'edit'])->name('admin_feature_edit');
+    Route::post('/admin/feature_update/{id}',[AdminFeatureController::class,'update'])->name('admin_feature_update');
+    Route::get('/admin/feature_delete/{id}',[AdminFeatureController::class,'delete'])->name('admin_feature_delete');
 
 /*......... Add Testimonial............ */
 
-Route::get('/admin/testimonial/view',[AdminTestimonialController::class,'index'])->name('admin_testimonial_view')->middleware('admin:admin');
-Route::get('/admin/testimonial/add',[AdminTestimonialController::class,'add'])->name('admin_testimonial_add')->middleware('admin:admin');
-Route::post('/admin/testimonial/store',[AdminTestimonialController::class,'store'])->name('admin_testimonial_store')->middleware('admin:admin');
-Route::get('/admin/testimonial_edit/{id}',[AdminTestimonialController::class,'edit'])->name('admin_testimonial_edit')->middleware('admin:admin');
-Route::post('/admin/testimonial_update/{id}',[AdminTestimonialController::class,'update'])->name('admin_testimonial_update')->middleware('admin:admin');
-Route::get('/admin/testimonial_delete/{id}',[AdminTestimonialController::class,'delete'])->name('admin_testimonial_delete')->middleware('admin:admin');
+    Route::get('/admin/testimonial/view',[AdminTestimonialController::class,'index'])->name('admin_testimonial_view');
+    Route::get('/admin/testimonial/add',[AdminTestimonialController::class,'add'])->name('admin_testimonial_add');
+    Route::post('/admin/testimonial/store',[AdminTestimonialController::class,'store'])->name('admin_testimonial_store');
+    Route::get('/admin/testimonial_edit/{id}',[AdminTestimonialController::class,'edit'])->name('admin_testimonial_edit');
+    Route::post('/admin/testimonial_update/{id}',[AdminTestimonialController::class,'update'])->name('admin_testimonial_update');
+    Route::get('/admin/testimonial_delete/{id}',[AdminTestimonialController::class,'delete'])->name('admin_testimonial_delete');
 
 /*......... Add Blog/Post............ */
 
-Route::get('/admin/post/view',[AdminPostController::class,'index'])->name('admin_post_view')->middleware('admin:admin');
-Route::get('/admin/post/add',[AdminPostController::class,'add'])->name('admin_post_add')->middleware('admin:admin');
-Route::post('/admin/post/store',[AdminPostController::class,'store'])->name('admin_post_store')->middleware('admin:admin');
-Route::get('/admin/post_edit/{id}',[AdminPostController::class,'edit'])->name('admin_post_edit')->middleware('admin:admin');
-Route::post('/admin/post_update/{id}',[AdminPostController::class,'update'])->name('admin_post_update')->middleware('admin:admin');
-Route::get('/admin/post_delete/{id}',[AdminPostController::class,'delete'])->name('admin_post_delete')->middleware('admin:admin');
+    Route::get('/admin/post/view',[AdminPostController::class,'index'])->name('admin_post_view');
+    Route::get('/admin/post/add',[AdminPostController::class,'add'])->name('admin_post_add');
+    Route::post('/admin/post/store',[AdminPostController::class,'store'])->name('admin_post_store');
+    Route::get('/admin/post_edit/{id}',[AdminPostController::class,'edit'])->name('admin_post_edit');
+    Route::post('/admin/post_update/{id}',[AdminPostController::class,'update'])->name('admin_post_update');
+    Route::get('/admin/post_delete/{id}',[AdminPostController::class,'delete'])->name('admin_post_delete');
 
 /*......... Photo Gallery............ */
 
-Route::get('/admin/photo/view',[AdminPhotoController::class,'index'])->name('admin_photo_view')->middleware('admin:admin');
-Route::get('/admin/photo/add',[AdminPhotoController::class,'add'])->name('admin_photo_add')->middleware('admin:admin');
-Route::post('/admin/photo/store',[AdminPhotoController::class,'store'])->name('admin_photo_store')->middleware('admin:admin');
-Route::get('/admin/photo_edit/{id}',[AdminPhotoController::class,'edit'])->name('admin_photo_edit')->middleware('admin:admin');
-Route::post('/admin/photo_update/{id}',[AdminPhotoController::class,'update'])->name('admin_photo_update')->middleware('admin:admin');
-Route::get('/admin/photo_delete/{id}',[AdminPhotoController::class,'delete'])->name('admin_photo_delete')->middleware('admin:admin');
+    Route::get('/admin/photo/view',[AdminPhotoController::class,'index'])->name('admin_photo_view');
+    Route::get('/admin/photo/add',[AdminPhotoController::class,'add'])->name('admin_photo_add');
+    Route::post('/admin/photo/store',[AdminPhotoController::class,'store'])->name('admin_photo_store');
+    Route::get('/admin/photo_edit/{id}',[AdminPhotoController::class,'edit'])->name('admin_photo_edit');
+    Route::post('/admin/photo_update/{id}',[AdminPhotoController::class,'update'])->name('admin_photo_update');
+    Route::get('/admin/photo_delete/{id}',[AdminPhotoController::class,'delete'])->name('admin_photo_delete');
 
 /*......... Video Gallery............ */
 
-Route::get('/admin/video/view',[AdminVideoController::class,'index'])->name('admin_video_view')->middleware('admin:admin');
-Route::get('/admin/video/add',[AdminVideoController::class,'add'])->name('admin_video_add')->middleware('admin:admin');
-Route::post('/admin/video/store',[AdminVideoController::class,'store'])->name('admin_video_store')->middleware('admin:admin');
-Route::get('/admin/video_edit/{id}',[AdminVideoController::class,'edit'])->name('admin_video_edit')->middleware('admin:admin');
-Route::post('/admin/video_update/{id}',[AdminVideoController::class,'update'])->name('admin_video_update')->middleware('admin:admin');
-Route::get('/admin/video_delete/{id}',[AdminVideoController::class,'delete'])->name('admin_video_delete')->middleware('admin:admin');
+    Route::get('/admin/video/view',[AdminVideoController::class,'index'])->name('admin_video_view');
+    Route::get('/admin/video/add',[AdminVideoController::class,'add'])->name('admin_video_add');
+    Route::post('/admin/video/store',[AdminVideoController::class,'store'])->name('admin_video_store');
+    Route::get('/admin/video_edit/{id}',[AdminVideoController::class,'edit'])->name('admin_video_edit');
+    Route::post('/admin/video_update/{id}',[AdminVideoController::class,'update'])->name('admin_video_update');
+    Route::get('/admin/video_delete/{id}',[AdminVideoController::class,'delete'])->name('admin_video_delete');
 
 /*......... FQA............ */
 
-Route::get('/admin/fqa/view',[AdminFqaController::class,'index'])->name('admin_fqa_view')->middleware('admin:admin');
-Route::get('/admin/fqa/add',[AdminFqaController::class,'add'])->name('admin_fqa_add')->middleware('admin:admin');
-Route::post('/admin/fqa/store',[AdminFqaController::class,'store'])->name('admin_fqa_store')->middleware('admin:admin');
-Route::get('/admin/fqa_edit/{id}',[AdminFqaController::class,'edit'])->name('admin_fqa_edit')->middleware('admin:admin');
-Route::post('/admin/fqa_update/{id}',[AdminFqaController::class,'update'])->name('admin_fqa_update')->middleware('admin:admin');
-Route::get('/admin/fqa_delete/{id}',[AdminFqaController::class,'delete'])->name('admin_fqa_delete')->middleware('admin:admin');
+    Route::get('/admin/fqa/view',[AdminFqaController::class,'index'])->name('admin_fqa_view');
+    Route::get('/admin/fqa/add',[AdminFqaController::class,'add'])->name('admin_fqa_add');
+    Route::post('/admin/fqa/store',[AdminFqaController::class,'store'])->name('admin_fqa_store');
+    Route::get('/admin/fqa_edit/{id}',[AdminFqaController::class,'edit'])->name('admin_fqa_edit');
+    Route::post('/admin/fqa_update/{id}',[AdminFqaController::class,'update'])->name('admin_fqa_update');
+    Route::get('/admin/fqa_delete/{id}',[AdminFqaController::class,'delete'])->name('admin_fqa_delete');
 
 /*......... All Pages Heading Dynamic............ */
 
 /*.........About Pages............ */
-Route::get('/admin/page/about',[AdminPageController::class,'about'])->name('admin_page_about')->middleware('admin:admin');
-Route::post('/admin/page/about/update',[AdminPageController::class,'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
+    Route::get('/admin/page/about',[AdminPageController::class,'about'])->name('admin_page_about');
+    Route::post('/admin/page/about/update',[AdminPageController::class,'about_update'])->name('admin_page_about_update');
 
 /*.........Terms and Condition Pages............ */
 
-Route::get('/admin/page/terms',[AdminPageController::class,'terms'])->name('admin_page_terms')->middleware('admin:admin');
-Route::post('/admin/page/terms/update',[AdminPageController::class,'terms_update'])->name('admin_page_terms_update')->middleware('admin:admin');
+    Route::get('/admin/page/terms',[AdminPageController::class,'terms'])->name('admin_page_terms');
+    Route::post('/admin/page/terms/update',[AdminPageController::class,'terms_update'])->name('admin_page_terms_update');
 
 /*......... Privacy Pages............ */
 
-Route::get('/admin/page/privacy',[AdminPageController::class,'privacy'])->name('admin_page_privacy')->middleware('admin:admin');
-Route::post('/admin/page/privacy/update',[AdminPageController::class,'privacy_update'])->name('admin_page_privacy_update')->middleware('admin:admin');
+    Route::get('/admin/page/privacy',[AdminPageController::class,'privacy'])->name('admin_page_privacy');
+    Route::post('/admin/page/privacy/update',[AdminPageController::class,'privacy_update'])->name('admin_page_privacy_update');
 
 /*......... Contact Pages............ */
 
-Route::get('/admin/page/contact',[AdminPageController::class,'contact'])->name('admin_page_contact')->middleware('admin:admin');
-Route::post('/admin/page/contact/update',[AdminPageController::class,'contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
+    Route::get('/admin/page/contact',[AdminPageController::class,'contact'])->name('admin_page_contact');
+    Route::post('/admin/page/contact/update',[AdminPageController::class,'contact_update'])->name('admin_page_contact_update');
 /*......... Photo Gallery Pages............ */
 
-Route::get('/admin/page/photo_gallery',[AdminPageController::class,'photo_gallery'])->name('admin_page_photo_gallery')->middleware('admin:admin');
-Route::post('/admin/page/photo_gallery/update',[AdminPageController::class,'photo_gallery_update'])->name('admin_page_photo_gallery_update')->middleware('admin:admin');
-/*......... Video Gallery Pages............ */
+    Route::get('/admin/page/photo_gallery',[AdminPageController::class,'photo_gallery'])->name('admin_page_photo_gallery');
+    Route::post('/admin/page/photo_gallery/update',[AdminPageController::class,'photo_gallery_update'])->name('admin_page_photo_gallery_update');
+    /*......... Video Gallery Pages............ */
 
-Route::get('/admin/page/video_gallery',[AdminPageController::class,'video_gallery'])->name('admin_page_video_gallery')->middleware('admin:admin');
-Route::post('/admin/page/video_gallery/update',[AdminPageController::class,'video_gallery_update'])->name('admin_page_video_gallery_update')->middleware('admin:admin');
+    Route::get('/admin/page/video_gallery',[AdminPageController::class,'video_gallery'])->name('admin_page_video_gallery');
+    Route::post('/admin/page/video_gallery/update',[AdminPageController::class,'video_gallery_update'])->name('admin_page_video_gallery_update');
 /*......... FQA Pages............ */
 
-Route::get('/admin/page/fqa',[AdminPageController::class,'fqa'])->name('admin_page_fqa')->middleware('admin:admin');
-Route::post('/admin/page/fqa/update',[AdminPageController::class,'fqa_update'])->name('admin_page_fqa_update')->middleware('admin:admin');
+    Route::get('/admin/page/fqa',[AdminPageController::class,'fqa'])->name('admin_page_fqa');
+    Route::post('/admin/page/fqa/update',[AdminPageController::class,'fqa_update'])->name('admin_page_fqa_update');
 /*......... Blog Pages............ */
 
-Route::get('/admin/page/blog',[AdminPageController::class,'blog'])->name('admin_page_blog')->middleware('admin:admin');
-Route::post('/admin/page/blog/update',[AdminPageController::class,'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+    Route::get('/admin/page/blog',[AdminPageController::class,'blog'])->name('admin_page_blog');
+    Route::post('/admin/page/blog/update',[AdminPageController::class,'blog_update'])->name('admin_page_blog_update');
 
-Route::get('/admin/page/room',[AdminPageController::class,'room'])->name('admin_page_room')->middleware('admin:admin');
-Route::post('/admin/page/room/update',[AdminPageController::class,'room_update'])->name('admin_page_room_update')->middleware('admin:admin');
+    Route::get('/admin/page/room',[AdminPageController::class,'room'])->name('admin_page_room');
+    Route::post('/admin/page/room/update',[AdminPageController::class,'room_update'])->name('admin_page_room_update');
 
 /*......... Cart Pages............ */
 
-Route::get('/admin/page/cart',[AdminPageController::class,'cart'])->name('admin_page_cart')->middleware('admin:admin');
-Route::post('/admin/page/cart/update',[AdminPageController::class,'cart_update'])->name('admin_page_cart_update')->middleware('admin:admin');
+    Route::get('/admin/page/cart',[AdminPageController::class,'cart'])->name('admin_page_cart');
+    Route::post('/admin/page/cart/update',[AdminPageController::class,'cart_update'])->name('admin_page_cart_update');
 
 /*......... Chcekout Pages............ */
 
-Route::get('/admin/page/checkout',[AdminPageController::class,'checkout'])->name('admin_page_checkout')->middleware('admin:admin');
-Route::post('/admin/page/checkout/update',[AdminPageController::class,'checkout_update'])->name('admin_page_checkout_update')->middleware('admin:admin');
+    Route::get('/admin/page/checkout',[AdminPageController::class,'checkout'])->name('admin_page_checkout');
+    Route::post('/admin/page/checkout/update',[AdminPageController::class,'checkout_update'])->name('admin_page_checkout_update');
 /*......... Payment Pages............ */
 
-Route::get('/admin/page/payment',[AdminPageController::class,'payment'])->name('admin_page_payment')->middleware('admin:admin');
-Route::post('/admin/page/payment/update',[AdminPageController::class,'payment_update'])->name('admin_page_payment_update')->middleware('admin:admin');
+    Route::get('/admin/page/payment',[AdminPageController::class,'payment'])->name('admin_page_payment');
+    Route::post('/admin/page/payment/update',[AdminPageController::class,'payment_update'])->name('admin_page_payment_update');
 /*......... SignUp Pages............ */
-Route::get('/admin/page/signup',[AdminPageController::class,'signup'])->name('admin_page_signup')->middleware('admin:admin');
-Route::post('/admin/page/signup/update',[AdminPageController::class,'signup_update'])->name('admin_page_signup_update')->middleware('admin:admin');
-/*......... Signin Pages............ */
-Route::get('/admin/page/signin',[AdminPageController::class,'signin'])->name('admin_page_signin')->middleware('admin:admin');
-Route::post('/admin/page/signin/update',[AdminPageController::class,'signin_update'])->name('admin_page_signin_update')->middleware('admin:admin');
+    Route::get('/admin/page/signup',[AdminPageController::class,'signup'])->name('admin_page_signup');
+    Route::post('/admin/page/signup/update',[AdminPageController::class,'signup_update'])->name('admin_page_signup_update');
+    /*......... Signin Pages............ */
+    Route::get('/admin/page/signin',[AdminPageController::class,'signin'])->name('admin_page_signin');
+    Route::post('/admin/page/signin/update',[AdminPageController::class,'signin_update'])->name('admin_page_signin_update');
 
-Route::get('/admin/subscriber/show',[AdminSubscriberController::class,'show'])->name('admin_subscriber_show')->middleware('admin:admin');
-Route::get('/admin/subscriber/send_email',[AdminSubscriberController::class,'send_email'])->name('admin_subscriber_send_email')->middleware('admin:admin');
-Route::post('/admin/subscriber/send_email_submit',[AdminSubscriberController::class,'send_email_submit'])->name('admin_subscriber_send_email_submit')->middleware('admin:admin');
+    Route::get('/admin/subscriber/show',[AdminSubscriberController::class,'show'])->name('admin_subscriber_show');
+    Route::get('/admin/subscriber/send_email',[AdminSubscriberController::class,'send_email'])->name('admin_subscriber_send_email');
+    Route::post('/admin/subscriber/send_email_submit',[AdminSubscriberController::class,'send_email_submit'])->name('admin_subscriber_send_email_submit');
 
 /*......... Room Amenity............ */
 
-Route::get('/admin/amenity/view',[AdminAmenityController::class,'index'])->name('admin_amenity_view')->middleware('admin:admin');
-Route::get('/admin/amenity/add',[AdminAmenityController::class,'add'])->name('admin_amenity_add')->middleware('admin:admin');
-Route::post('/admin/amenity/store',[AdminAmenityController::class,'store'])->name('admin_amenity_store')->middleware('admin:admin');
-Route::get('/admin/amenity_edit/{id}',[AdminAmenityController::class,'edit'])->name('admin_amenity_edit')->middleware('admin:admin');
-Route::post('/admin/amenity_update/{id}',[AdminAmenityController::class,'update'])->name('admin_amenity_update')->middleware('admin:admin');
-Route::get('/admin/amenity_delete/{id}',[AdminAmenityController::class,'delete'])->name('admin_amenity_delete')->middleware('admin:admin');
-
+    Route::get('/admin/amenity/view',[AdminAmenityController::class,'index'])->name('admin_amenity_view');
+    Route::get('/admin/amenity/add',[AdminAmenityController::class,'add'])->name('admin_amenity_add');
+    Route::post('/admin/amenity/store',[AdminAmenityController::class,'store'])->name('admin_amenity_store');
+    Route::get('/admin/amenity_edit/{id}',[AdminAmenityController::class,'edit'])->name('admin_amenity_edit');
+    Route::post('/admin/amenity_update/{id}',[AdminAmenityController::class,'update'])->name('admin_amenity_update');
+    Route::get('/admin/amenity_delete/{id}',[AdminAmenityController::class,'delete'])->name('admin_amenity_delete');
 /*......... Rooms............ */
 
-Route::get('/admin/room/view',[AdminRoomController::class,'index'])->name('admin_room_view')->middleware('admin:admin');
-Route::get('/admin/room/add',[AdminRoomController::class,'add'])->name('admin_room_add')->middleware('admin:admin');
-Route::post('/admin/room/store',[AdminRoomController::class,'store'])->name('admin_room_store')->middleware('admin:admin');
-Route::get('/admin/room_edit/{id}',[AdminRoomController::class,'edit'])->name('admin_room_edit')->middleware('admin:admin');
-Route::post('/admin/room_update/{id}',[AdminRoomController::class,'update'])->name('admin_room_update')->middleware('admin:admin');
-Route::get('/admin/room_delete/{id}',[AdminRoomController::class,'delete'])->name('admin_room_delete')->middleware('admin:admin');
+    Route::get('/admin/room/view',[AdminRoomController::class,'index'])->name('admin_room_view');
+    Route::get('/admin/room/add',[AdminRoomController::class,'add'])->name('admin_room_add');
+    Route::post('/admin/room/store',[AdminRoomController::class,'store'])->name('admin_room_store');
+    Route::get('/admin/room_edit/{id}',[AdminRoomController::class,'edit'])->name('admin_room_edit');
+    Route::post('/admin/room_update/{id}',[AdminRoomController::class,'update'])->name('admin_room_update');
+    Route::get('/admin/room_delete/{id}',[AdminRoomController::class,'delete'])->name('admin_room_delete');
 
-Route::get('/admin/room/gallery/{id}', [AdminRoomController::class, 'gallery'])->name('admin_room_gallery');
-Route::post('/admin/room/gallery/store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store');
-Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete');
+    Route::get('/admin/room/gallery/{id}', [AdminRoomController::class, 'gallery'])->name('admin_room_gallery');
+    Route::post('/admin/room/gallery/store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store');
+    Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete');
+
+});
+
+
+
+
