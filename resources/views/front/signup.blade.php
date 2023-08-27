@@ -52,7 +52,7 @@
                         <button type="submit" class="btn btn-primary bg-website">Submit</button>
                     </div>
                     <div class="mb-3">
-                        <a href="{{ route('customer_signin') }}" class="primary-color">Existing User? Login Now</a>
+                        <a href="{{ route('customer_login') }}" class="primary-color">Existing User? Login Now</a>
                     </div>
                 </div>
             </form>

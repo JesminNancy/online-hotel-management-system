@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('customer.layout.app')
 
 @section('heading', 'Customer Dashboard')
 

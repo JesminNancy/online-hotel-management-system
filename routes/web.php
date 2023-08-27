@@ -59,18 +59,27 @@ Route::post('/admin/reset_password_submit',[AdminLoginController::class,'resetPa
 Route::post('/admin/forget_password_submit',[AdminLoginController::class,'forgetPassword_submit'])->name('admin_forget_password_submit');
 
 /*......... Customer Without Middleware............ */
-Route::get('/customer/logout',[CustomerAuthController::class,'logout'])->name('customer_logout');
-Route::get('/customer/login',[CustomerAuthController::class,'index'])->name('customer_login');
+Route::get('/login',[CustomerAuthController::class,'login'])->name('customer_login');
 Route::post('/customer/login_submit',[CustomerAuthController::class,'login_submit'])->name('customer_login_submit');
+Route::get('/customer/logout',[CustomerAuthController::class,'logout'])->name('customer_logout');
 Route::get('/signup',[CustomerAuthController::class,'signup'])->name('customer_signup');
-Route::get('/signin',[CustomerAuthController::class,'signin'])->name('customer_signin');
 Route::post('/signup-submit',[CustomerAuthController::class,'signup_submit'])->name('customer_signup_submit');
-Route::get('/customer/verify/{email}/{token}',[CustomerAuthController::class,'verify'])->name('customer_signup_verify');
- /*......... Customer With Middleware............ */
+Route::get('/signup-verify/{email}/{token}',[CustomerAuthController::class,'verify'])->name('customer_signup_verify');
+
+
+/* Customer */
+// Route::get('/forget-password', [CustomerAuthController::class, 'forget_password'])->name('customer_forget_password');
+// Route::post('/forget-password-submit', [CustomerAuthController::class, 'forget_password_submit'])->name('customer_forget_password_submit');
+// Route::get('/reset-password/{token}/{email}', [CustomerAuthController::class, 'reset_password'])->name('customer_reset_password');
+// Route::post('/reset-password-submit', [CustomerAuthController::class, 'reset_password_submit'])->name('customer_reset_password_submit');
+
+
+
+/*......... Customer With Middleware............ */
 Route::group(['middleware'=>['customer:customer']],function(){
 Route::get('/customer/home',[CustomerHomeController::class,'index'])->name('customer_home');
-Route::get('/customer/edit_profile',[AdminProfileController::class,'index'])->name('customer_profile');
-Route::post('/customer/edit_profile_submit',[AdminProfileController::class,'edit_profile_submit'])->name('customer_profile_submit');
+Route::get('/customer/edit_profile',[CustomerProfileController::class,'index'])->name('customer_profile');
+Route::post('/customer/edit_profile_submit',[CustomerProfileController::class,'edit_profile_submit'])->name('customer_profile_submit');
  });
  /*......... Admin With Middleware............ */
 

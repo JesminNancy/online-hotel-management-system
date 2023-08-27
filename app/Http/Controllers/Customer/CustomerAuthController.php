@@ -12,25 +12,26 @@ use Illuminate\Support\Facades\Mail;
 
 class CustomerAuthController extends Controller
 {
-    public function signin(){
+    public function login(){
         return view('front.login');
     }
     public function login_submit(Request $request){
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        // $credential = [
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        // ];
+        $credential = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'status' => 1
+        ];
 
-        // if(Auth::guard('admin')->attempt($credential)){
-        //     return redirect()->route('admin_home');
-        // }else{
-        //     return redirect()->route('admin_login')->with('error','Information is not correct');
-        // }
+        if(Auth::guard('customer')->attempt($credential)){
+            return redirect()->route('customer_home');
+        }else{
+            return redirect()->route('customer_login')->with('error','Information is not correct');
+        }
     }
     public function signup(){
         return view('front.signup');
@@ -43,16 +44,16 @@ class CustomerAuthController extends Controller
             'retype_password' => 'required|same:password',
         ]);
 
-            $token = Hash('sha256',time());
+            $token = hash('sha256', time());
+            $password = Hash::make($request->password);
+            $verification_link = url('signup-verify/'.$request->email.'/'.$token);
             $obj = new Customer();
             $obj->name = $request->name;
             $obj->email = $request->email;
-            $obj->password = $request->password;
+            $obj->password = $password;
             $obj->token = $token;
             $obj->status = 0;
             $obj->save();
-
-            $verification_link = url('/customer/verify/'.$request->email.'/'.$token);
 
              // Send email
              $subject = 'Subscriber Verification';
@@ -71,7 +72,6 @@ class CustomerAuthController extends Controller
 
     public function verify($email,$token){
         $customer_data =  Customer::where('email',$email)->where('token',$token)->first();
-
         if($customer_data){
             $customer_data->token = '';
             $customer_data->status = 1;
@@ -80,5 +80,9 @@ class CustomerAuthController extends Controller
           }else{
               return redirect()->route('customer_login');
         }
+    }
+    public function logout(){
+        Auth::guard('customer')->logout();
+        return redirect()->route('customer_login');
     }
 }

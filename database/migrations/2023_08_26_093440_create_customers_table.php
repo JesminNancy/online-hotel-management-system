@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
             $table->string('photo')->nullable();
-            $table->string('token');
+            $table->string('token')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

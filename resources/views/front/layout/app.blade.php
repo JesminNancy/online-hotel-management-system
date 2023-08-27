@@ -40,7 +40,7 @@
                                 <li class="menu"><a href="{{ route('customer_signup') }}">{{ $global_page->signup_heading }}</a></li>
                             @endif
                             @if($global_page->signin_status==1)
-                                <li class="menu"><a href="{{ route('customer_signin') }}">{{ $global_page->signin_heading }}</a></li>
+                                <li class="menu"><a href="{{ route('customer_login') }}">{{ $global_page->signin_heading }}</a></li>
                             @endif
                         </ul>
                     </div>
