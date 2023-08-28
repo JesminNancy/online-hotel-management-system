@@ -68,10 +68,10 @@ Route::get('/signup-verify/{email}/{token}',[CustomerAuthController::class,'veri
 
 
 /* Customer */
-// Route::get('/forget-password', [CustomerAuthController::class, 'forget_password'])->name('customer_forget_password');
-// Route::post('/forget-password-submit', [CustomerAuthController::class, 'forget_password_submit'])->name('customer_forget_password_submit');
-// Route::get('/reset-password/{token}/{email}', [CustomerAuthController::class, 'reset_password'])->name('customer_reset_password');
-// Route::post('/reset-password-submit', [CustomerAuthController::class, 'reset_password_submit'])->name('customer_reset_password_submit');
+Route::get('/forget-password', [CustomerAuthController::class, 'forget_password'])->name('customer_forget_password');
+Route::post('/forget-password-submit', [CustomerAuthController::class, 'forget_password_submit'])->name('customer_forget_password_submit');
+Route::get('/reset-password/{token}/{email}', [CustomerAuthController::class, 'reset_password'])->name('customer_reset_password');
+Route::post('/reset-password-submit', [CustomerAuthController::class, 'reset_password_submit'])->name('customer_reset_password_submit');
 
 
 

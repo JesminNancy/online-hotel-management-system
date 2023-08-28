@@ -85,4 +85,52 @@ class CustomerAuthController extends Controller
         Auth::guard('customer')->logout();
         return redirect()->route('customer_login');
     }
+
+    public function forget_password(){
+
+        return view('front.forget_password');
+    }
+
+    public function forget_password_submit(Request $request){
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+      $admin_data = Customer::where('email',$request->email)->first();
+      if(!$admin_data){
+        return redirect()->back()->with('error','Email Address is not Found!');
+      }
+
+      $token = hash('sha256',time());
+      $admin_data->token = $token;
+      $admin_data->update();
+
+      $reset_password = url('/reset-password/'.$token.'/'.$request->email);
+      $subject = 'Reset Password';
+      $message = 'Please click on the following links:<br>';
+      $message .= '<a href="'.$reset_password.'">Click here!</a>';
+
+      Mail::to($request->email)->send(new WebsiteMail($subject,$message));
+      return redirect()->route('customer_login')->with('success','Please following the next steps');
+    }
+    public function reset_password($token,$email){
+
+         $customer_data  =  Customer::where('token',$token)->where('email',$email)->first();
+        if(!$customer_data){
+            return redirect()->route('customer_login');
+        }
+        return view('front.reset_password', compact('token','email'));
+    }
+
+    public function reset_password_submit(Request $request){
+        $request->validate([
+            'password' => 'required',
+            'retype_password' => 'required|same:password'
+        ]);
+        $admin_data = Customer::where('token',$request->token)->where('email',$request->email)->first();
+        $admin_data->password = Hash::make($request->password);
+        $admin_data->token = '';
+        $admin_data->update();
+        return redirect()->route('customer_login')->with('success','Password is Reset successfully');
+    }
 }
