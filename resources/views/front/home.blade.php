@@ -27,18 +27,17 @@
 
 <div class="search-section">
     <div class="container">
-        <form action="cart.html" method="post">
+        <form action="{{ route('cart_submit') }}" method="post">
+            @csrf
         <div class="inner">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <select name="" class="form-select">
+                        <select name="room_id" class="form-select">
                             <option value="">Select Room</option>
-                            <option value="">Standard Couple Bed Room</option>
-                            <option value="">Delux Couple Bed Room</option>
-                            <option value="">Standard Four Bed Room</option>
-                            <option value="">Delux Four Bed Room</option>
-                            <option value="">VIP Special Room</option>
+                            @foreach ($rooms as $room)
+                            <option value="{{ $room->id }}">{{ $room->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -49,12 +48,12 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="form-group">
-                        <input type="number" name="" class="form-control" min="1" max="30" placeholder="Adults">
+                        <input type="number" name="adult" class="form-control" min="1" max="30" placeholder="Adults">
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="form-group">
-                        <input type="number" name="" class="form-control" min="1" max="30" placeholder="Children">
+                        <input type="number" name="children" class="form-control" min="0" max="30" placeholder="Children">
                     </div>
                 </div>
                 <div class="col-lg-2">
@@ -198,5 +197,17 @@
         </div>
     </div>
 </div>
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error )
+    <script>
+        iziToast.error({
+        title: '',
+        position: 'topRight',
+        message: '{{ $error }}',
+        });
+    </script>
+    @endforeach
+@endif
 
 @endsection

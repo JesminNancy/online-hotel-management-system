@@ -19,6 +19,7 @@ use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerProfileController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\BookingController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PhotoController;
@@ -47,8 +48,9 @@ Route::post('/subscribe/send_email',[SubscriberController::class,'send_email'])-
 Route::get('/subscribe/verify/{token}/{email}',[SubscriberController::class,'verify'])->name('subscribe_verify');
 Route::get('/room',[RoomController::class,'index'])->name('room');
 Route::get('/room/{id}',[RoomController::class,'singleRoom'])->name('room_details');
-
-
+Route::post('/booking/submit',[BookingController::class,'cart_submit'])->name('cart_submit');
+Route::get('/cart',[BookingController::class,'cart_view'])->name('cart');
+Route::get('/cart_delete/{id}',[BookingController::class,'cart_delete'])->name('cart_delete');
 /*......... Admin Without Middleware............ */
 
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin_login');
@@ -214,6 +216,15 @@ Route::group(['middleware'=>['admin:admin']],function(){
     /*......... Signin Pages............ */
     Route::get('/admin/page/signin',[AdminPageController::class,'signin'])->name('admin_page_signin');
     Route::post('/admin/page/signin/update',[AdminPageController::class,'signin_update'])->name('admin_page_signin_update');
+
+    /*......... Forget Password Pages............ */
+
+    Route::get('/admin/page/forgetpassword',[AdminPageController::class,'forgetPassword'])->name('admin_page_forget_password');
+    Route::post('/admin/page/forgetpassword/update',[AdminPageController::class,'forget_password_update'])->name('admin_page_forget_password_update');
+
+     /*......... Reset Password Pages............ */
+     Route::get('/admin/page/resetpassword',[AdminPageController::class,'resetPassword'])->name('admin_page_reset_password');
+     Route::post('/admin/page/resetpassword/update',[AdminPageController::class,'reset_password_update'])->name('admin_page_reset_password_update');
 
     Route::get('/admin/subscriber/show',[AdminSubscriberController::class,'show'])->name('admin_subscriber_show');
     Route::get('/admin/subscriber/send_email',[AdminSubscriberController::class,'send_email'])->name('admin_subscriber_send_email');

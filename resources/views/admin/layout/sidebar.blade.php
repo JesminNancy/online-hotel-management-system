@@ -21,7 +21,7 @@
             </li>
 
 
-            <li class="nav-item dropdown {{ Request::is('/admin/page/about')||Request::is('admin/page/terms')||Request::is('/admin/page/terms')||Request::is('/admin/page/privacy')||Request::is('/admin/page/contact')||Request::is('/admin/page/photo_gallery')||Request::is('/admin/page/video_gallery')||Request::is('/admin/page/fqa')||Request::is('/admin/page/blog')||Request::is('/admin/page/room')||Request::is('/admin/page/cart')||Request::is('/admin/page/checkout')||Request::is('/admin/page/signup')||Request::is('/admin/page/signin') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('/admin/page/about')||Request::is('admin/page/terms')||Request::is('/admin/page/terms')||Request::is('/admin/page/privacy')||Request::is('/admin/page/contact')||Request::is('/admin/page/photo_gallery')||Request::is('/admin/page/video_gallery')||Request::is('/admin/page/fqa')||Request::is('/admin/page/blog')||Request::is('/admin/page/room')||Request::is('/admin/page/cart')||Request::is('/admin/page/checkout')||Request::is('/admin/page/signup')||Request::is('/admin/page/signin')||Request::is('/admin/page/forgetpassword')||Request::is('/admin/page/resetpassword') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Pages</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('/admin/page/about') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_about') }}"><i class="fa fa-angle-right"></i> About</a></li>
@@ -37,6 +37,8 @@
                     <li class="{{ Request::is('/admin/page/checkout') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_checkout') }}"><i class="fa fa-angle-right"></i> Checkout</a></li>
                     <li class="{{ Request::is('/admin/page/signup') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_signup') }}"><i class="fa fa-angle-right"></i> SignUp</a></li>
                     <li class="{{ Request::is('/admin/page/signin') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_signin') }}"><i class="fa fa-angle-right"></i> SignIn</a></li>
+                    <li class="{{ Request::is('/admin/page/forgetpassword') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_forget_password') }}"><i class="fa fa-angle-right"></i> Forget Password</a></li>
+                    <li class="{{ Request::is('/admin/page/resetpassword') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_reset_password') }}"><i class="fa fa-angle-right"></i> Reset Password</a></li>
                 </ul>
             </li>
             <li class="{{ Request::is('admin/slider/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_slider_view') }}"><i class="fa fa-hand-o-right"></i> <span>Slider</span></a></li>

@@ -18,6 +18,7 @@ class HomeController extends Controller
         $testimonials = Testimonial::get();
         $posts = Post::orderBy('id','desc')->limit(3)->get();
         $rooms = Room::get();
+
         return view('front.home', compact('all_slider','all_feature','testimonials','posts','rooms'));
     }
 }

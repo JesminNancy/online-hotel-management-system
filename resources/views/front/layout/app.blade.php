@@ -31,7 +31,7 @@
                     <div class="col-md-6 right-side">
                         <ul class="right">
                             @if($global_page->cart_status==1)
-                                <li class="menu"><a href="cart.html">{{ $global_page->cart_heading }}</a></li>
+                                <li class="menu"><a href="{{ route('cart') }}">{{ $global_page->cart_heading }}</a></li>
                             @endif
                             @if($global_page->checkout_status==1)
                                 <li class="menu"><a href="checkout.html">{{ $global_page->checkout_heading }}</a></li>
@@ -54,7 +54,7 @@
             <!-- Menu For Mobile Device -->
             <div class="mobile-nav">
                 <a href="index.html" class="logo">
-                    <img src="uploads/logo.png" alt="">
+                    <img src="{{ asset('uploads/logo.png') }}" alt="">
                 </a>
             </div>
 
@@ -63,7 +63,7 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
                         <a class="navbar-brand" href="{{ route('about') }}">
-                            <img src="uploads/logo.png" alt="">
+                            <img src="{{ asset('uploads/logo.png') }}" alt="">
                         </a>
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
