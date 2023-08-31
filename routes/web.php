@@ -51,6 +51,7 @@ Route::get('/room/{id}',[RoomController::class,'singleRoom'])->name('room_detail
 Route::post('/booking/submit',[BookingController::class,'cart_submit'])->name('cart_submit');
 Route::get('/cart',[BookingController::class,'cart_view'])->name('cart');
 Route::get('/cart_delete/{id}',[BookingController::class,'cart_delete'])->name('cart_delete');
+Route::get('/checkout',[BookingController::class,'checkout'])->name('checkout');
 /*......... Admin Without Middleware............ */
 
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin_login');

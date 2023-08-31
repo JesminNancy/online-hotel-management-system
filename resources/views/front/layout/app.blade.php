@@ -34,13 +34,20 @@
                                 <li class="menu"><a href="{{ route('cart') }}">{{ $global_page->cart_heading }}</a></li>
                             @endif
                             @if($global_page->checkout_status==1)
-                                <li class="menu"><a href="checkout.html">{{ $global_page->checkout_heading }}</a></li>
+                                <li class="menu"><a href="{{ route('checkout') }}">{{ $global_page->checkout_heading }}</a></li>
                             @endif
-                            @if($global_page->signup_status==1)
-                                <li class="menu"><a href="{{ route('customer_signup') }}">{{ $global_page->signup_heading }}</a></li>
-                            @endif
-                            @if($global_page->signin_status==1)
-                                <li class="menu"><a href="{{ route('customer_login') }}">{{ $global_page->signin_heading }}</a></li>
+
+                            @if(!Auth::guard('customer')->check())
+
+                                @if($global_page->signup_status==1)
+                                    <li class="menu"><a href="{{ route('customer_signup') }}">{{ $global_page->signup_heading }}</a></li>
+                                @endif
+                                @if($global_page->signin_status==1)
+                                    <li class="menu"><a href="{{ route('customer_login') }}">{{ $global_page->signin_heading }}</a></li>
+                                @endif
+
+                            @else
+                                <li class="menu"><a href="{{ route('customer_home') }}">Dashboard</a></li>
                             @endif
                         </ul>
                     </div>

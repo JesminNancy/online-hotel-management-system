@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Cart</h2>
+                        <h2>{{ $global_page->cart_heading }}</h2>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="checkout mb_20">
-                            <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
+                            <a href="{{ route('checkout') }}" class="btn btn-primary bg-website">Checkout</a>
                         </div>
 
                         @else
