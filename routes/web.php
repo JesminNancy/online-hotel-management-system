@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminRoomController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerHomeController;
+use App\Http\Controllers\Customer\CustomerOrderController;
 use App\Http\Controllers\Customer\CustomerProfileController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
@@ -52,6 +53,9 @@ Route::post('/booking/submit',[BookingController::class,'cart_submit'])->name('c
 Route::get('/cart',[BookingController::class,'cart_view'])->name('cart');
 Route::get('/cart_delete/{id}',[BookingController::class,'cart_delete'])->name('cart_delete');
 Route::get('/checkout',[BookingController::class,'checkout'])->name('checkout');
+Route::post('/paymment',[BookingController::class,'payment'])->name('payment');
+Route::get('/paymment/paypal/{price}',[BookingController::class,'paypal'])->name('paypal');
+
 /*......... Admin Without Middleware............ */
 
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('admin_login');
@@ -84,6 +88,8 @@ Route::group(['middleware'=>['customer:customer']],function(){
 Route::get('/customer/home',[CustomerHomeController::class,'index'])->name('customer_home');
 Route::get('/customer/edit_profile',[CustomerProfileController::class,'index'])->name('customer_profile');
 Route::post('/customer/edit_profile_submit',[CustomerProfileController::class,'edit_profile_submit'])->name('customer_profile_submit');
+Route::get('/customer/order/view',[CustomerOrderController::class,'customer_order'])->name('customer_order_view');
+
  });
  /*......... Admin With Middleware............ */
 
