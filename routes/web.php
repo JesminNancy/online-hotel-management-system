@@ -54,7 +54,8 @@ Route::get('/cart',[BookingController::class,'cart_view'])->name('cart');
 Route::get('/cart_delete/{id}',[BookingController::class,'cart_delete'])->name('cart_delete');
 Route::get('/checkout',[BookingController::class,'checkout'])->name('checkout');
 Route::post('/paymment',[BookingController::class,'payment'])->name('payment');
-Route::get('/paymment/paypal/{price}',[BookingController::class,'paypal'])->name('paypal');
+Route::post('/paymment/paypal/{price}',[BookingController::class,'paypal'])->name('paypal');
+Route::post('/paymment/stripe/{price}',[BookingController::class,'stripe'])->name('payment_stripe');
 
 /*......... Admin Without Middleware............ */
 
@@ -85,11 +86,11 @@ Route::post('/reset-password-submit', [CustomerAuthController::class, 'reset_pas
 
 /*......... Customer With Middleware............ */
 Route::group(['middleware'=>['customer:customer']],function(){
-Route::get('/customer/home',[CustomerHomeController::class,'index'])->name('customer_home');
-Route::get('/customer/edit_profile',[CustomerProfileController::class,'index'])->name('customer_profile');
-Route::post('/customer/edit_profile_submit',[CustomerProfileController::class,'edit_profile_submit'])->name('customer_profile_submit');
-Route::get('/customer/order/view',[CustomerOrderController::class,'customer_order'])->name('customer_order_view');
-
+    Route::get('/customer/home',[CustomerHomeController::class,'index'])->name('customer_home');
+    Route::get('/customer/edit_profile',[CustomerProfileController::class,'index'])->name('customer_profile');
+    Route::post('/customer/edit_profile_submit',[CustomerProfileController::class,'edit_profile_submit'])->name('customer_profile_submit');
+    Route::get('/customer/order',[CustomerOrderController::class,'customer_order'])->name('customer_order_view');
+    Route::get('/customer/invoice/{id}',[CustomerOrderController::class,'invoice'])->name('customer_invoice');
  });
  /*......... Admin With Middleware............ */
 
