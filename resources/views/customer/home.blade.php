@@ -12,10 +12,10 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Total Orders</h4>
+                    <h4>Completed Orders</h4>
                 </div>
                 <div class="card-body">
-                    122
+                    {{ $total_completed_order }}
                 </div>
             </div>
         </div>
@@ -30,22 +30,7 @@
                     <h4>Pending Orders</h4>
                 </div>
                 <div class="card-body">
-                    2
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-        <div class="card card-statistic-1">
-            <div class="card-icon bg-warning">
-                <i class="fa fa-bullhorn"></i>
-            </div>
-            <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Completed Orders</h4>
-                </div>
-                <div class="card-body">
-                    45
+                    {{ $total_pending_order }}
                 </div>
             </div>
         </div>
