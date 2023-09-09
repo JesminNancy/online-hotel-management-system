@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAmenityController;
+use App\Http\Controllers\Admin\AdminCustomerController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -101,7 +102,8 @@ Route::group(['middleware'=>['admin:admin']],function(){
     Route::post('/admin/edit_profile_submit',[AdminProfileController::class,'edit_profile_submit'])->name('admin_profile_submit');
  /*......... Admin With Middleware............ */
     Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home');
-
+    Route::get('/admin/customers',[AdminCustomerController::class,'index'])->name('admin_customer');
+    Route::get('/admin/customers/change-status/{id}',[AdminCustomerController::class,'change_status'])->name('admin_customer_change_status');
 /*......... Add Slider............ */
 
     Route::get('/admin/slider/view',[AdminSliderController::class,'index'])->name('admin_slider_view');

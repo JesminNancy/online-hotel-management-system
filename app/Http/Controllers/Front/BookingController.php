@@ -328,7 +328,7 @@ class BookingController extends Controller
 
         $responseJson = $response->jsonSerialize();
         $transaction_id = $responseJson['balance_transaction'];
-       // $last_4 = $responseJson['payment_method_details']['card']['last4'];
+        $last_4 = $responseJson['payment_method_details']['card']['last4'];
 
         $order_no = time();
 
@@ -403,19 +403,19 @@ class BookingController extends Controller
             $obj->subtotal = $sub;
             $obj->save();
 
-            // while(1) {
-            //     if($t1>=$t2) {
-            //         break;
-            //     }
+            while(1) {
+                if($t1>=$t2) {
+                    break;
+                }
 
-            //     $obj = new BookedRoom();
-            //     $obj->booking_date = date('d/m/Y',$t1);
-            //     $obj->order_no = $order_no;
-            //     $obj->room_id = $arr_cart_room_id[$i];
-            //     $obj->save();
+                $obj = new BookedRoom();
+                $obj->booking_date = date('d/m/Y',$t1);
+                $obj->order_no = $order_no;
+                $obj->room_id = $arr_cart_room_id[$i];
+                $obj->save();
 
-            //     $t1 = strtotime('+1 day',$t1);
-            // }
+                $t1 = strtotime('+1 day',$t1);
+            }
 
         }
 

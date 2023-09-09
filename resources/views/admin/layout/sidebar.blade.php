@@ -41,6 +41,9 @@
                     <li class="{{ Request::is('/admin/page/resetpassword') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_page_reset_password') }}"><i class="fa fa-angle-right"></i> Reset Password</a></li>
                 </ul>
             </li>
+
+            <li class="{{ Request::is('admin/customers/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_customer') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
+
             <li class="{{ Request::is('admin/slider/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_slider_view') }}"><i class="fa fa-hand-o-right"></i> <span>Slider</span></a></li>
 
             <li class="{{ Request::is('admin/feature/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_feature_view') }}"><i class="fa fa-hand-o-right"></i> <span>Feature</span></a></li>

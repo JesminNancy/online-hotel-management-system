@@ -39,9 +39,10 @@ class CustomerProfileController extends Controller
                 unlink(public_path('uploads/'.$customer_data->photo));
             }
 
-            $ext = $request->file('photo')->getClientOriginalExtension();
+            $ext = $request->file('photo')->extension();
             $final_img = time().'.'.$ext;
             $request->file('photo')->move(public_path('uploads/'),$final_img );
+
             $customer_data->photo = $final_img;
         }
 
