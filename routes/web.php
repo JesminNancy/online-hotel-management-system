@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminFqaController;
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminRoomController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
@@ -93,6 +94,8 @@ Route::group(['middleware'=>['customer:customer']],function(){
     Route::get('/customer/order',[CustomerOrderController::class,'customer_order'])->name('customer_order_view');
     Route::get('/customer/invoice/{id}',[CustomerOrderController::class,'invoice'])->name('customer_invoice');
  });
+
+
  /*......... Admin With Middleware............ */
 
 Route::group(['middleware'=>['admin:admin']],function(){
@@ -104,6 +107,9 @@ Route::group(['middleware'=>['admin:admin']],function(){
     Route::get('/admin/home',[AdminHomeController::class,'index'])->name('admin_home');
     Route::get('/admin/customers',[AdminCustomerController::class,'index'])->name('admin_customer');
     Route::get('/admin/customers/change-status/{id}',[AdminCustomerController::class,'change_status'])->name('admin_customer_change_status');
+    Route::get('/admin/orders',[AdminOrderController::class,'index'])->name('admin_orders');
+    Route::get('/admin/order/invoice/{id}',[AdminOrderController::class,'order_invoice'])->name('admin_order_invoice');
+    Route::get('/admin/orders/delete/{id}',[AdminOrderController::class,'delete'])->name('admin_order_delete');
 /*......... Add Slider............ */
 
     Route::get('/admin/slider/view',[AdminSliderController::class,'index'])->name('admin_slider_view');

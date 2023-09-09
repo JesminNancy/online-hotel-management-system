@@ -42,7 +42,9 @@
                 </ul>
             </li>
 
-            <li class="{{ Request::is('admin/customers/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_customer') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
+            <li class="{{ Request::is('admin/customers') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_customer') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
+
+            <li class="{{ Request::is('admin/orders') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_orders') }}"><i class="fa fa-hand-o-right"></i> <span>Orders</span></a></li>
 
             <li class="{{ Request::is('admin/slider/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_slider_view') }}"><i class="fa fa-hand-o-right"></i> <span>Slider</span></a></li>
 
