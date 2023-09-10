@@ -74,6 +74,9 @@ select {
 .top ul li a {
 	color: #333;
 }
+.top ul li a sup {
+	color: rgb(255, 0, 0);
+}
 .top ul li.phone-text:before {
 	content: "\f2a0";
 	font-family: "FontAwesome";

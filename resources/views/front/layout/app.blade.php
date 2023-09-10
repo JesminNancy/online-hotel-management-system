@@ -31,7 +31,9 @@
                     <div class="col-md-6 right-side">
                         <ul class="right">
                             @if($global_page->cart_status==1)
-                                <li class="menu"><a href="{{ route('cart') }}">{{ $global_page->cart_heading }}</a></li>
+                                <li class="menu"><a href="{{ route('cart') }}">{{ $global_page->cart_heading }}
+                                @if(session()->has('cart_room_id'))<sup>{{ count(session()->get('cart_room_id')) }}</sup>@endif</a>
+                                </li>
                             @endif
                             @if($global_page->checkout_status==1)
                                 <li class="menu"><a href="{{ route('checkout') }}">{{ $global_page->checkout_heading }}</a></li>

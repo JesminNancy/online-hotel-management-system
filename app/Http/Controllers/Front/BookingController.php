@@ -31,6 +31,33 @@ class BookingController extends Controller
         $checkin = $dates[0];
         $checkout = $dates[1];
 
+        $d1 = explode('/',$checkin);
+        $d2 = explode('/',$checkout);
+        $d1_new = $d1[2].'-'.$d1[1].'-'.$d1[0];
+        $d2_new = $d2[2].'-'.$d2[1].'-'.$d2[0];
+        $t1 = strtotime($d1_new);
+        $t2 = strtotime($d2_new);
+
+        $cnt = 1;
+        while(1) {
+            if($t1>=$t2) {
+                break;
+            }
+            $single_date = date('d/m/Y',$t1);
+            $total_already_booked_rooms = BookedRoom::where('booking_date',$single_date)->where('room_id',$request->room_id)->count();
+            $arr =Room::where('id',$request->room_id)->first();
+            $total_allowed_rooms = $arr->total_rooms;
+            if($total_already_booked_rooms == $total_allowed_rooms){
+                $cnt = 0;
+                break;
+            }
+            $t1 = strtotime('+1 day',$t1);
+        }
+
+        if($cnt == 0){
+            return redirect()->back()->with('error','Maximum number of the room already booked');
+        }
+
         session()->push('cart_room_id',$request->room_id);
         session()->push('cart_checkin',$checkin);
         session()->push('cart_checkout',$checkout);
@@ -255,19 +282,19 @@ class BookingController extends Controller
                 $obj->subtotal = $sub;
                 $obj->save();
 
-                // while(1) {
-                //     if($t1>=$t2) {
-                //         break;
-                //     }
+                while(1) {
+                    if($t1>=$t2) {
+                        break;
+                    }
 
-                //     $obj = new BookedRoom();
-                //     $obj->booking_date = date('d/m/Y',$t1);
-                //     $obj->order_no = $order_no;
-                //     $obj->room_id = $arr_cart_room_id[$i];
-                //     $obj->save();
+                    $obj = new BookedRoom();
+                    $obj->booking_date = date('d/m/Y',$t1);
+                    $obj->order_no = $order_no;
+                    $obj->room_id = $arr_cart_room_id[$i];
+                    $obj->save();
 
-                //     $t1 = strtotime('+1 day',$t1);
-                // }
+                    $t1 = strtotime('+1 day',$t1);
+                }
 
             }
 
@@ -340,6 +367,7 @@ class BookingController extends Controller
         $obj->order_no = $order_no;
         $obj->transaction_id = $transaction_id;
         $obj->payment_method = 'Stripe';
+        $obj->card_last_digit = $last_4;
         $obj->paid_amount = $total_price;
         $obj->booking_date = date('d/m/Y');
         $obj->status = 'Completed';
