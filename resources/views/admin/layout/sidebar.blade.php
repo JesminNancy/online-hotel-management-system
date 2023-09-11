@@ -11,6 +11,7 @@
 
             <li class="{{ Request::is('/admin/home') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_home') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
 
+            <li class="{{ Request::is('/admin/settings') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_setting') }}"><i class="fa fa-hand-o-right"></i> <span>Settings</span></a></li>
 
             <li class="nav-item dropdown {{Request::is('/admin/amenity/view')||Request::is('/admin/room/view') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Hotel Section</span></a>

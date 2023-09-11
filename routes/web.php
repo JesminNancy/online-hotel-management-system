@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminFqaController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminRoomController;
+use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerHomeController;
@@ -110,6 +111,9 @@ Route::group(['middleware'=>['admin:admin']],function(){
     Route::get('/admin/orders',[AdminOrderController::class,'index'])->name('admin_orders');
     Route::get('/admin/order/invoice/{id}',[AdminOrderController::class,'order_invoice'])->name('admin_order_invoice');
     Route::get('/admin/orders/delete/{id}',[AdminOrderController::class,'delete'])->name('admin_order_delete');
+    Route::get('/admin/setting',[AdminSettingController::class,'index'])->name('admin_setting');
+    Route::post('/admin/setting_update/',[AdminSettingController::class,'update'])->name('admin_setting_update');
+
 /*......... Add Slider............ */
 
     Route::get('/admin/slider/view',[AdminSliderController::class,'index'])->name('admin_slider_view');
