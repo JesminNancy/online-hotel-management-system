@@ -20,7 +20,7 @@
                    <li class="{{Request::is('/admin/room/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_room_view') }}"><i class="fa fa-angle-right"></i>Rooms</a></li>
                 </ul>
             </li>
-
+            <li class="{{ Request::is('/admin/datewise_rooms') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_datewise_rooms') }}"><i class="fa fa-hand-o-right"></i> <span>Datewise Rooms</span></a></li>
 
             <li class="nav-item dropdown {{ Request::is('/admin/page/about')||Request::is('admin/page/terms')||Request::is('/admin/page/terms')||Request::is('/admin/page/privacy')||Request::is('/admin/page/contact')||Request::is('/admin/page/photo_gallery')||Request::is('/admin/page/video_gallery')||Request::is('/admin/page/fqa')||Request::is('/admin/page/blog')||Request::is('/admin/page/room')||Request::is('/admin/page/cart')||Request::is('/admin/page/checkout')||Request::is('/admin/page/signup')||Request::is('/admin/page/signin')||Request::is('/admin/page/forgetpassword')||Request::is('/admin/page/resetpassword') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Pages</span></a>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAmenityController;
 use App\Http\Controllers\Admin\AdminCustomerController;
+use App\Http\Controllers\Admin\AdminDateWiseRoomController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -113,6 +114,8 @@ Route::group(['middleware'=>['admin:admin']],function(){
     Route::get('/admin/orders/delete/{id}',[AdminOrderController::class,'delete'])->name('admin_order_delete');
     Route::get('/admin/setting',[AdminSettingController::class,'index'])->name('admin_setting');
     Route::post('/admin/setting_update/',[AdminSettingController::class,'update'])->name('admin_setting_update');
+    Route::get('/admin/datewise/rooms',[AdminDateWiseRoomController::class,'index'])->name('admin_datewise_rooms');
+    Route::post('/admin/setting_update/',[AdminDateWiseRoomController::class,'show'])->name('admin_datewise_rooms_submit');
 
 /*......... Add Slider............ */
 
