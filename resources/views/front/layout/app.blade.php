@@ -26,7 +26,7 @@
             gtag('config', '{{ $global_setting_data->analytic_id }}');
         </script>
 
-        <style>
+       <style>
             .main-nav nav .navbar-nav .nav-item a:hover,
             .main-nav nav .navbar-nav .nav-item:hover a,
             .slide-carousel.owl-carousel .owl-nav .owl-prev:hover,
